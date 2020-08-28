@@ -1,0 +1,98 @@
+{
+	"data_loading":
+	{
+    "rootPath": "/home/tejasm/Data/",
+		"rootFolder": "spine/",
+
+		"type_of_data": "clean",
+		"storeOriginalFolder": "images/",
+		"storeAnnotationFolder": "masks/",
+
+		"category_split_excel_fileName": "_training_split.xlsx",
+		"image_label_assoc_excel_fileName": "image_label_assoc.csv",
+
+		"motion_categories": "['minimal', 'mild', 'moderate', 'severe']",
+
+		"contrast_types": "['T1CE']"
+
+  },
+	"output_params":
+	{
+		"csv_training_summary": "training_summary.xlsx",
+		"num_trained_models_to_choose": 1
+	},
+	"model_output_params":
+	{
+		"modelFolderPath": "/home/tejasm/Models/spine",
+
+		"network_output_channels": 3
+
+	},
+	"data_params":
+	{
+		"original_input_image_width": 256,
+		"original_input_image_height": 256,
+		"network_input_image_width": 256,
+		"network_input_image_height": 256,
+		"choose_X_slices": 1,
+		"choose_X_GT_slices": 1,
+		"num_vol_slices": 155,
+		"iteration_keys": "['images', 'labels']"
+	},
+	"training_params":
+	{
+		"batch_size": 2,
+
+		"n_epochs": 30,
+
+		"learning_rate": 0.00001,
+
+		"dropout_training_Flag": 0,
+
+		"dropout_prob_training": 0.5,
+
+		"dropout_prob_testing": 1.0
+
+	},
+	"learning_type":
+	{
+		"learn_type": "shuffled"
+	},
+	"data_augmentations":
+	{
+		"no_aug": "[]",
+
+		"flipped_LR": "[]",
+		"flipped_UD": "[]",
+
+		"bilateralBlur1": "[5, 5, 5, 3]",
+
+		"translate1": "[-10, 20]",
+		"translate2": "[10, -20]",
+		"translate3": "[-10, -10]",
+		"translate4": "[10, 10]",
+		"translate5": "[-5, -5]",
+		"translate6": "[5, 5]",
+		"translate7": "[-2, -7]",
+		"translate8": "[2, 7]",
+
+		"rotate1": "[0, 360]",
+		"rotate2": "[0, 90]",
+		"rotate3": "[90, 180]",
+		"rotate4": "[180, 270]",
+		"rotate5": "[270, 360]"
+	},
+	"dataset":
+	{
+        "name": "spine"
+    },
+	"algorithm":
+	{
+		"name": "UNet_reg",
+		"loss": "dice_loss",
+		"run_name": "noDropout",
+		"net_type": "unet_reg_v1"
+	}
+
+
+}
