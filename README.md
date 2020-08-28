@@ -1,6 +1,6 @@
 # Spine segmentation (T2 MRI)
 
-### What, if anything, did you do to verify that the segmentation masks and images were correctly aligned in the data loader?
+### Verifying segmentation masks and images were correctly aligned in the data loader
 The functions in the ``common\spineDataLoader.py`` script ensure that the images/labels match each other. Only masks containing all the labels (background 0, disc 1, vertebrae 2) were used, and the remaining masks (and corresponding images) were not used. The ``common\utilities\iterators\batchiterators_spine.py`` script also takes care of matching the images and the labels. You can also explore the data in the script ``exploration\runScript_spine_readData.py`` for more information.
 
 ### Data assumptions
