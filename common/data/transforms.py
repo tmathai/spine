@@ -243,13 +243,13 @@ def standardize_zeroMeanUnitVar_image(image, img_width, img_height, img_channels
 
     x = copy.deepcopy(np.asarray(image))
 
-    # mask brain region with only positive pixels
+    # mask region with only positive pixels
     binBrainRegion = x > 0
 
     # Get the pixel values in image where mask_value == 255, which may be later used to slice the array.
     img_mask = x[np.where(binBrainRegion == 1)]
 
-    # get mean/std of masked brain region
+    # get mean/std of masked region
     img_avg = np.mean(img_mask, axis=0)
     img_std = np.std(img_mask, axis=0)
 

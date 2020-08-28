@@ -110,6 +110,8 @@ if __name__ == "__main__":
     count_disc1_and_vert2 = 0
     count_disc1 = 0
 
+    img_list = []
+
     for img_idx in range(total_num_images):
 
         print('=====')
@@ -144,6 +146,7 @@ if __name__ == "__main__":
 
         if largest == 2:
             count_disc1_and_vert2 += 1
+            img_list.append(img_idx)
 
         if largest == 1:
             count_disc1 += 1
@@ -151,11 +154,12 @@ if __name__ == "__main__":
     print('count_disc1_and_vert2', count_disc1_and_vert2)
     print('count_disc1', count_disc1)
     print('count_other', total_num_images - count_disc1_and_vert2 - count_disc1)
-
+    print('good images', img_list)
 
     print('=====')
+    print('=====')
 
-    img_idx = 14
+    img_idx = 19
 
     ffn_image = ffp_images_dataset_list[0][img_idx]
     print('ffn_image', ffn_image)
@@ -173,9 +177,25 @@ if __name__ == "__main__":
     largest = mask.max()
     print(smallest, largest)
 
+    dummy_mask = copy.deepcopy(mask)
+    dummy_mask = np.asarray(dummy_mask).astype(np.uint8)
+
+    bin = mask == 1
+    dummy_mask[bin] = 20
+
+    bin = mask == 2
+    dummy_mask[bin] = 40
+
+    #overlay = copy.deepcopy(img)
+    overlay = cv2.addWeighted(img, 0.5, dummy_mask, 0.5, 0)
+
 
     plt.figure()
     plt.imshow(img, cmap='gray')
     plt.figure()
     plt.imshow(mask, cmap='gray')
+
+    plt.figure()
+    plt.imshow(overlay)
+
     plt.show()
